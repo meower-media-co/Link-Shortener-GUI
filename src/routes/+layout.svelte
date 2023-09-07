@@ -1,23 +1,35 @@
 <script>
-    import { KeyRound, DoorOpen } from 'lucide-svelte';
+    import { Home, Shield, RefreshCcw, User } from 'lucide-svelte';
 
-    import { page } from '$app/stores';
+    import { token, authed, admin, refreshData } from '$lib';
 </script>
 
 <div class="topnav">
     <div class="topnav-inner">
-        <a class="{$page.url.pathname === '/' ? 'active' : ''} left" href="/">My Links</a>
-        <a class="{$page.url.pathname === '/admin' ? 'active' : ''} left" href="/admin">Admin</a>
-        
-        <span class="right" on:click={() => { alert(1); }}>
-            <DoorOpen class="right" style="cursor: pointer;" size={18} />
-        </span>
-        <span class="right" on:click={() => { alert(1); }}>
-            <KeyRound class="right" style="cursor: pointer;" size={18} />
-        </span>
+        <a class="left" style="cursor: pointer;" href="/">
+            <Home />
+        </a>
+        <a class="left" style="cursor: pointer;" href="/admin">
+            <Shield />
+        </a>
+
+        <a class="right" style="cursor: pointer;" href="/account">
+            <User class="right" />
+        </a>
+
+        <button class="right" style="cursor: pointer;" on:click={async () => {
+            $authed = false;
+            await refreshData($token);
+        }}>
+            <RefreshCcw class="right" />
+        </button>
     </div>
 </div>
 
-<div class="body">
-    <slot />
+<div class="page">
+    {#if $authed}
+        <slot />
+    {:else}
+        <span>Loading data...</span>
+    {/if}
 </div>

@@ -5,6 +5,12 @@ body {
     color: white;
 }
 
+button {
+    background: none;
+    border: none;
+    color: white;
+}
+
 .topnav {
     background-color: #333;
     position: sticky;
@@ -17,12 +23,13 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 80em;
+    max-height: 54px;
 }
 
-.topnav-inner a, .topnav-inner span {
+.topnav-inner a, .topnav-inner button {
     color: #f2f2f2;
     text-align: center;
-    padding: 18px 16px;
+    padding: 16px 16px;
     text-decoration: none;
     font-size: 16px;
 }
@@ -35,11 +42,20 @@ body {
     float: right;
 }
 
-.topnav-inner a.left:hover {
-    background-color: #1f1f1f;
+div.heading {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.body {
+div.heading > div.options {
+    position: absolute;
+    right: 0;
+    display: flex;
+    gap: 0.5em;
+}
+
+.page {
     padding: 1em;
     margin-left: auto;
     margin-right: auto;
